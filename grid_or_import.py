@@ -3,16 +3,22 @@ import json
 
 def grid_or_import(grider : GridSearchCV, X_train, y_train, search = True, filename = 'params.txt'):
     ''' 
-    Function that can save grid_params_ to json file in order to avoid
-    taking up a lot of time grid search
+    Function that helps to save the best_params_ parameters to a JSON file 
+    to avoid time-consuming greedy search.
 
-    Grider : GridSearchCV object to search best parameters for model
-    X_train : train features
-    y_train : train target
-    search : True for do grid search
-             False for import data from file
-    filename : name of file which contains best params for model, or 
-    which will contains best params_grid after search
+    grider (GridSearchCV) :     GridSearchCV object configured with estimator, 
+                                parameter grid, and cross-validation settings.
+
+    X_train (array-like) :      Feature matrix for training.
+
+    y_train (array-like) :      Target values for training.
+
+    search (bool, optional) :   True for do grid search (default = True)
+                                False for import data from file
+
+    filename (str, optional) :  name of file which contains best params for model, or 
+    which will contains best params_grid after search (default = params.txt)
+    
     '''
     if search:
         grider.fit(X_train, y_train)
