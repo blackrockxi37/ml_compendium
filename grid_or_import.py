@@ -1,4 +1,4 @@
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import GridSearchCV # type: ignore
 import json
 
 def grid_or_import(grider : GridSearchCV, X_train, y_train, search = True, filename = 'params.txt'):
@@ -18,14 +18,14 @@ def grid_or_import(grider : GridSearchCV, X_train, y_train, search = True, filen
         grider.fit(X_train, y_train)
         with open(filename, 'w') as f:
             json.dump(grider.best_params_, f)
-        print(f"Лучшие параметры сохранены в файл {filename}: {grider.best_params_}")
+        print(f"Best params saved to file {filename}: {grider.best_params_}")
         return grider.best_params_
     else:
         try:
             with open(filename, 'r') as f:
                 best_params = json.load(f)
-            print(f"Лучшие параметры загружены из файла {filename}: {best_params}")
+            print(f"Best params loaded from file {filename}: {best_params}")
             return best_params
         except FileNotFoundError:
-            print(f"Файл {filename} не найден. Выполните GridSearchCV хотя бы один раз для сохранения параметров.")
+            print(f"File {filename} is not found. Do GridSearchCV (search = True) at once.")
             return None
