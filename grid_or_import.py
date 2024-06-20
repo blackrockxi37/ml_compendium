@@ -21,9 +21,16 @@ def grid_or_import(grider : GridSearchCV, X_train, y_train, search = True, filen
     
     '''
     if search:
+        try:
+            with open(filename, 'r') as f:
+                old_params = json.load(f)
+        except FileNotFoundError:
+            old_params = {}
         grider.fit(X_train, y_train)
+        new_params = grider.best_params_
+        old_params.update(new_params)
         with open(filename, 'w') as f:
-            json.dump(grider.best_params_, f)
+            json.dump(old_params, f)
         print(f"Best params saved to file {filename}: {grider.best_params_}")
         return grider.best_params_
     else:
