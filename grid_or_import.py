@@ -26,7 +26,7 @@ def grid_or_import(grider : GridSearchCV, X_train, y_train, search = True, filen
                 old_params = json.load(f)
         except FileNotFoundError:
             old_params = {}
-        grider.fit(X_train, y_train)
+        grider.fit(X_train, y_train) # just grid
         new_params = grider.best_params_
         old_params.update(new_params)
         with open(filename, 'w') as f:
