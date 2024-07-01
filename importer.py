@@ -3,6 +3,12 @@ from sklearn.linear_model import LogisticRegression
 #end
 
 class importer():
+    '''
+    Напиши библиотеки для импортирования сверху, сразу после оставь комментарий '#end'.
+    Закинь этот файл в папку с проектом и просто создай класс importer()
+    Теперь все библиотеки с файла импортированы
+    хехе
+    '''
     def  __init__(self, split_tabs = 4):
         print(__file__)
         libs = list()
@@ -16,5 +22,3 @@ class importer():
             exec(i)
             split = '\t' * split_tabs
             print(f'{i}{split}was executed.')
-
-
