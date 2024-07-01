@@ -8,11 +8,14 @@ class importer():
     Закинь этот файл в папку с проектом и просто создай класс importer()
     Теперь все библиотеки с файла импортированы
     хехе
+    from sklearnex import patch_sklearn
+    patch_sklearn()
+    добавить вручную, как только установишь
+    pip install scikit-learn-intelex
     '''
     def  __init__(self, split_tabs = 4):
-        print(__file__)
         libs = list()
-        with open(__file__) as f:
+        with open('importer.py') as f:
             libs = f.readlines()
         index = libs.index('#end\n')
         libs = libs[:index]
@@ -21,4 +24,6 @@ class importer():
         for i in libs:
             exec(i)
             split = '\t' * split_tabs
-            print(f'{i}{split}was executed.')
+            print(f'{i}{split} was executed.')
+
+importer()
